@@ -1,13 +1,6 @@
 (ns clojure-todo-list.core
   (:require [ring.adapter.jetty :as jetty]))
 
-;; (defn foo
-;;   "I don't do a whole lot."
-;;   [x]
-;;   (println x "Hello, World!"))
-
-;; (foo " Yo, ")
-
 (defn welcome
   "A ring handler to process all requests sent to the webapp"
   [request]
