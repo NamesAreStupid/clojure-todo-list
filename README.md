@@ -1,6 +1,6 @@
 # clojure-todo-list
 
-A Clojure library designed to ... well, that part is up to you.
+A clojure todo app. Developed according to the tutorial found at "https://practicalli.github.io/clojure-webapps/"
 
 ## License
 
