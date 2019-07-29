@@ -43,12 +43,21 @@
    :body (pr-str request)
    :headers {}})
 
+(defn hello
+  "A simple personalised greeting showing the use of variable path elements"
+  [request]
+  (let [name (get-in request [:route-params :name])]
+    {:status 200
+     :body (str "Hello " name ".  I got your name from the web URL")
+     :headers {}}))
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/goodbye" [] goodbye)
   (GET "/about" [] about)
   ;; (GET "/request-info" [] request-info)
   (GET "/request-info" [] handle-dump)
+  (GET "/hello/:name" [] hello)
   (not-found "<h1>This is not the page you are looking for</h1>
               <p>Sorry, the page you requested was not found!</p>"))
 
