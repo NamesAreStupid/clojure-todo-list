@@ -9,5 +9,5 @@
   :repl-options {:init-ns clojure-todo-list.core}
   :main clojure-todo-list.core
   :min-lein-version "2.0.0"
-  :uberjar-name "todo-list.jar"
+  :uberjar-name "clojure-todo-list.jar"
   :profiles {:dev {:main clojure-todo-list.core/-dev-main}})
