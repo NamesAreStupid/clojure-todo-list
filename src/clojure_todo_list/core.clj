@@ -2,7 +2,8 @@
   (:require [ring.adapter.jetty :as jetty]
             [ring.middleware.reload :refer [wrap-reload]]
             [compojure.core :refer [defroutes GET]]
-            [compojure.route :refer [not-found]]))
+            [compojure.route :refer [not-found]]
+            [ring.handler.dump :refer [handle-dump]]))
 
 (defn welcome
   "A ring handler to process all requests sent to the webapprespond witha  simple welcome message"
@@ -17,8 +18,37 @@
             </ul>"
      :headers {}}))
 
+(defn goodbye
+  "A song to wish you goodbye"
+  [request]
+  {:status 200
+   :body "<h1>Walking back to happiness</h1>
+          <p>Walking back to happiness with you</p>
+          <p>Said, Farewell to loneliness I knew</p>
+          <p>Laid aside foolish pride</p>
+          <p>Learnt the truth from tears I cried</p>"
+   :headers {}})
+
+(defn about
+  "Information about the website developer"
+  [request]
+  {:status 200
+   :body "I am an awesome Clojure developer, well getting there..."
+   :headers {}})
+
+(defn request-info
+  "View the information contained in the request, useful for debugging"
+  [request]
+  {:status 200
+   :body (pr-str request)
+   :headers {}})
+
 (defroutes app
   (GET "/" [] welcome)
+  (GET "/goodbye" [] goodbye)
+  (GET "/about" [] about)
+  ;; (GET "/request-info" [] request-info)
+  (GET "/request-info" [] handle-dump)
   (not-found "<h1>This is not the page you are looking for</h1>
               <p>Sorry, the page you requested was not found!</p>"))
 
